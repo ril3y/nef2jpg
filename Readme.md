@@ -5,6 +5,9 @@ Multi-threaded. Real-time preview. Abortable.
 
 Built for speed and simplicity.
 
+
+![image](https://github.com/user-attachments/assets/8f775b23-a19e-4e9d-a38b-ae70acaeeeaa)
+
 ---
 
 ## Features
