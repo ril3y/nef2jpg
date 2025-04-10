@@ -1,0 +1,12 @@
+[project]
+name = "nef2jpg"
+version = "0.1.0"
+description = "Simple NEF to JPG converter with GUI"
+authors = [
+    { name="Riley Porter", email="rileyporter@gmail.com" }
+]
+requires-python = ">=3.8"
+dependencies = [
+    "rawpy>=0.17.0",
+    "Pillow>=10.0.0"
+]
