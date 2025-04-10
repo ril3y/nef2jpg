@@ -106,7 +106,7 @@ def main(page: ft.Page):
     # Left-side controls (1/3 width).
     input_dir = ft.TextField(label="Input Folder", width=250)
     output_dir = ft.TextField(label="Output Folder", width=250)
-    quality = ft.TextField(value="85", width=60)
+    quality = ft.TextField(value="100", width=60)
     thread_count = ft.TextField(value="4", width=60)
     resize_switch = ft.Switch(label="Resize?")
     width_field = ft.TextField(value="800", width=60)
@@ -238,7 +238,7 @@ def main(page: ft.Page):
         spacing=10,
     )
 
-    # Right column: preview image centered in its 2/3 space.
+    # Build right column: preview image centered in its 2/3 space.
     right_column = ft.Column(
         [preview_image],
         alignment=ft.MainAxisAlignment.CENTER,
@@ -253,6 +253,66 @@ def main(page: ft.Page):
         vertical_alignment=ft.CrossAxisAlignment.STRETCH,
     )
 
+    # Add an About button at the bottom-right.
+    def show_about(e):
+        # Debug output to the console (terminal)
+        print("About button clicked")
+        #console_text.value = "About button clicked"
+        page.update()
+
+        # Define a callback to close the dialog.
+        def close_dialog(e):
+            print("About dialog closed")
+            page.dialog.open = False
+            page.update()
+
+        # Create the AlertDialog with a Column as the content.
+        about_dialog = ft.AlertDialog(
+            modal=True,
+            title=ft.Text("About"),
+            content=ft.Container(
+           content=ft.Column(
+            [
+                ft.Text("NEF → JPG Converter", style="headlineSmall"),
+                ft.Markdown(
+                    "📸 I wrote this utility to quickly convert RAW `.NEF` files I forgot to set to JPG while shooting my daughter's volleyball game.\n\n"
+                    "I'm sharing this with all the parents (and anyone else) who made the same mistake — so you don't have to write your own utility. 😅"
+                ),
+                ft.Markdown("💻 [GitHub Repository Source](https://github.com/ril3y/nef2jpg)",
+                            on_tap_link=lambda e: page.launch_url(e.data)),
+            ],
+            tight=True,
+    ),
+
+    ),
+    actions=[ft.TextButton("OK", on_click=close_dialog)],
+        )
+
+        # Add the dialog to the page if not already present.
+        if about_dialog not in page.controls:
+            page.add(about_dialog)
+
+        # Set the dialog on the page and open it.
+        page.dialog = about_dialog
+        page.dialog.open = True
+        print("Dialog opened")
+        page.update()
+
+
+
+    about_button = ft.IconButton(
+        icon=ft.Icons.HELP_OUTLINE,
+        tooltip="About",
+        on_click=show_about,
+    )
+
+    footer_row = ft.Row(
+        [ft.Container(expand=True), about_button],  # pushes the button to far right
+        vertical_alignment=ft.CrossAxisAlignment.END,
+        expand=True,
+    )
+
     page.add(main_row)
+    page.add(footer_row)
 
 ft.app(target=main)
