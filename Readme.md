@@ -30,6 +30,12 @@ This application allows you to:
    - Progress is tracked and updated in real time via a progress bar and status messages.
    - The Abort button provides visual feedback ("Aborting...") when pressed.
 
+## Releases
+
+Download the latest version from the [Releases page](https://github.com/yourusername/nef2jpg/releases).
+
+*Tip: Create a new release on GitHub and attach your packaged executable (or source code archive) for users to download. Update the link above with your actual GitHub username and repository name.*
+
 ## Requirements
 
 - Python 3.8 or later
@@ -41,5 +47,5 @@ This application allows you to:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/nef2jpg.git
+   git clone https://github.com/ril3y/nef2jpg.git
    cd nef2jpg
